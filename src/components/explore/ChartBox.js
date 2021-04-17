@@ -1,6 +1,7 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core";
+
+import { makeStyles, Grid } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Chart() {
+function ChartBox() {
   const classes = useStyles();
   return (
     <Grid container className={classes.chartContainer}>
@@ -25,4 +26,4 @@ function Chart() {
   );
 }
 
-export default Chart;
+export default ChartBox;

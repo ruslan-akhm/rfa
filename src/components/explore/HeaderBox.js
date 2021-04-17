@@ -1,5 +1,8 @@
 import React from "react";
+import Earning from "./Earning";
+
 import {
+  makeStyles,
   Grid,
   Typography,
   Avatar,
@@ -9,7 +12,7 @@ import {
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4),
     border: "2px solid red",
     //marginBottom: theme.spacing(8),
-    //marginRight: theme.spacing(5),
+    marginRight: theme.spacing(5),
   },
   sliderBefore: {
     paddingLeft: theme.spacing(4),
@@ -87,20 +90,20 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    //padding: "0",
-    //lineHeight: "18px",
-    display: "flex",
-    //flexDirection: "center",
-    alignItems: "center",
-    fontSize: "14px",
-  },
+  // text: {
+  //   //padding: "0",
+  //   //lineHeight: "18px",
+  //   display: "flex",
+  //   //flexDirection: "center",
+  //   alignItems: "center",
+  //   fontSize: "14px",
+  // },
   icons: {
     marginRight: theme.spacing(1),
   },
 }));
 
-function Header() {
+function HeaderBox() {
   const classes = useStyles();
 
   return (
@@ -126,9 +129,10 @@ function Header() {
           LOCATION
         </Typography>
       </Grid>
-      <Grid item className={classes.dividerBefore + " " + classes.flexColumn}>
-        <Typography>AMOUNT</Typography>
-        <Typography className={classes.text}>Potential Earning</Typography>
+      <Grid item className={classes.dividerBefore}>
+        {/* <Typography>AMOUNT</Typography>
+        <Typography className={classes.text}>Potential Earning</Typography> */}
+        <Earning />
       </Grid>
       <Grid item className={classes.flexCenter}>
         <IconButton className={classes.brd}>
@@ -144,4 +148,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderBox;

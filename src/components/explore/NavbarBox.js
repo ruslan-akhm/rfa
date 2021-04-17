@@ -1,6 +1,8 @@
 import React from "react";
 import { ReactComponent as Logo } from "../../img/logo.svg";
+
 import {
+  makeStyles,
   Grid,
   Button,
   Avatar,
@@ -9,7 +11,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,7 +64,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Navbar() {
+function NavbarBox() {
   const classes = useStyles();
   return (
     <Grid
@@ -70,7 +72,7 @@ function Navbar() {
       direction="row"
       justify="flex-start"
       alignItems="center"
-      spacing={1}
+      //spacing={1}
       className={classes.navbarContainer}
     >
       <Grid item lg={1} className={classes.navbarButtons + " " + classes.brd}>
@@ -111,4 +113,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarBox;

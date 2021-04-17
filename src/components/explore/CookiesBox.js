@@ -1,7 +1,14 @@
 import React from "react";
-import { Grid, Typography, Button, IconButton } from "@material-ui/core";
+
+import {
+  makeStyles,
+  Grid,
+  Typography,
+  Button,
+  IconButton,
+} from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,31 +35,35 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     backgroundColor: "#fff",
     borderRadius: "20px",
-    minHeight: theme.spacing(8),
+    minHeight: "fit-content", //theme.spacing(8),
+    boxSizing: "border-box",
+    //height: "100%",
     padding: theme.spacing(3),
     width: "100%",
-    marginTop: theme.spacing(-15), //"-150px",
+    //marginTop: theme.spacing(-15), //"-150px",
     border: "2px solid red",
   },
   text: {
     color: "gray",
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(4),
   },
 }));
 
-function Cookies(props) {
+function CookiesBox(props) {
   const classes = useStyles();
   return (
     <Grid
       container
       direction="column"
-      spacing={3}
+      //spacing={3}
       className={classes.cookiesContainer}
     >
       <Grid item>
         <Typography variant="h6">We use cookies!</Typography>
       </Grid>
-      <Grid item>
-        <Typography className={classes.text}>
+      <Grid item className={classes.text}>
+        <Typography>
           Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
           sint. Velit officia consequat duis enim velit mollit. Exercitation
           veniam consequat sunt nostrud amet.
@@ -69,4 +80,4 @@ function Cookies(props) {
   );
 }
 
-export default Cookies;
+export default CookiesBox;
