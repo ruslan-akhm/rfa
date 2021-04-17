@@ -1,12 +1,12 @@
 import { MuiThemeProvider } from "@material-ui/core";
 import { theme } from "./themes/theme";
-import Mainpage from "./components/mainpage/Mainpage";
-import "./App.css";
+import Explore from "./pages/Explore";
+//import "./App.css";
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Mainpage />
+      <Explore />
     </MuiThemeProvider>
   );
 }

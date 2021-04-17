@@ -33,7 +33,7 @@ export const profile = {
   id: "1",
   lastName: "Black",
   firstName: "Annette",
-  avatar: "",
+  avatar: "../../img/person.jpg",
   rating: "5.0",
   certificates: "6",
   projects: "45",
@@ -47,6 +47,6 @@ export const profile = {
 };
 
 //Milestones projects and rating should be combined with projects and rating reflected at bottom-left card, if
-//those are the same data. (I considered they are not since there are different projects amount reflected)
+//those are the same data. (I considered they are not since there are different number of projects reflected)
 
 export const isOnline = true;

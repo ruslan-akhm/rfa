@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as Logo } from "../../img/logo.svg";
 import {
   Grid,
   Button,
@@ -9,9 +10,11 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { makeStyles } from "@material-ui/core";
-import { ReactComponent as Logo } from "../../img/logo.svg";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
   avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
@@ -41,21 +44,21 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2),
     color: theme.palette.solidGray.main,
-    minWidth: "120px",
+    minWidth: "fit-content",
     //BASED ON WHERE WE ARE - COLOR BUTTONS ARE DIFFERENT
   },
   navbarContainer: {
     backgroundColor: "#fff",
     borderRadius: "20px",
     minHeight: theme.spacing(8),
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
     width: "100%",
-    marginTop: theme.spacing(5),
+    //marginTop: theme.spacing(5),
     border: "2px solid red",
   },
 
   brd: {
-    border: "2px solid red",
+    border: "1px solid red",
   },
 }));
 
@@ -70,10 +73,10 @@ function Navbar() {
       spacing={1}
       className={classes.navbarContainer}
     >
-      <Grid item lg={1} className={classes.navbarButtons}>
+      <Grid item lg={1} className={classes.navbarButtons + " " + classes.brd}>
         <Logo />
       </Grid>
-      <Grid item lg={3} className={classes.dividerBefore}>
+      <Grid item lg={3} className={classes.dividerBefore + " " + classes.brd}>
         <Button color="primary" className={classes.navbarButtons}>
           Explore
         </Button>
@@ -84,22 +87,22 @@ function Navbar() {
           Blog
         </Button>
       </Grid>
-      <Grid item className={classes.bell}>
+      <Grid item className={classes.bell + " " + classes.brd}>
         <IconButton color="solidGray">
           <NotificationsNoneIcon />
         </IconButton>
       </Grid>
-      <Grid item className={classes.dividerBefore}>
+      <Grid item className={classes.dividerBefore + " " + classes.brd}>
         <Avatar
           className={classes.avatar}
           alt=""
           src="../../img/person.jpg"
         ></Avatar>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.brd}>
         <Typography className={classes.name}>Name Name</Typography>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.brd}>
         <IconButton color="solidGray">
           <ExpandMoreIcon />
         </IconButton>

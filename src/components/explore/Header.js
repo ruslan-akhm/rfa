@@ -12,6 +12,9 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
   avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
@@ -21,14 +24,20 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.green.main,
     //marginLeft: theme.spacing(1),
   },
+  buttons: {
+    borderRadius: "15px",
+    padding: theme.spacing(2),
+    width: "120px",
+  },
   headerContainer: {
     backgroundColor: "#fff",
     borderRadius: "20px",
-    width: "fit-content",
+    width: "100%",
     minHeight: theme.spacing(8),
     padding: theme.spacing(4),
     border: "2px solid red",
-    //marginTop: theme.spacing(5),
+    //marginBottom: theme.spacing(8),
+    //marginRight: theme.spacing(5),
   },
   sliderBefore: {
     paddingLeft: theme.spacing(4),
@@ -95,7 +104,7 @@ function Header() {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.headerContainer}>
+    <Grid container className={classes.headerContainer} justify="space-between">
       <Grid item className={classes.sliderBefore}>
         <Typography>Individual tax return YEAR</Typography>
         <Typography className={classes.text}>
@@ -127,7 +136,7 @@ function Header() {
         </IconButton>
       </Grid>
       <Grid item className={classes.dividerBefore}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" className={classes.buttons}>
           Contact
         </Button>
       </Grid>
