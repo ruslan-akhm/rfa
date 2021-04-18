@@ -10,12 +10,13 @@ export const theme = createMuiTheme({
   },
   palette: {
     primary: { main: "#0346F2" },
-    secondary: { main: "#F2F5FE" },
-    background: { main: "#EBEBF9" },
+    secondary: { main: "#EBEBF9" },
+    background: { main: "#F6F7FB" },
     lightGray: { main: "#E7E9F0" },
-    solidGray: { main: "#11cb5f" },
+    solidGray: { main: "#8E94A7" },
     green: { main: "#00D555" },
   },
 });
 
-//"#8E94A7"
+//"#11cb5f"
+//#F2F5FE

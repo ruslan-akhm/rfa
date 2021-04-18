@@ -1,4 +1,4 @@
-const taxReturns = [
+export const taxReturns = [
   {
     taxYear: "2019",
     dateSubmitted: "16 December 2020",

@@ -2,6 +2,7 @@ import React from "react";
 
 import { makeStyles, Grid, Typography, IconButton } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
+//import Cpa from "./Cpa";
 //import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -15,16 +16,12 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "20px",
     border: "2px solid red",
     marginTop: "40px",
-    // position: "relative",
-    // bottom: "0",
-    // right: "20%",
-    // width: "120%",
   },
   relative: {
     position: "relative",
     bottom: "0",
-    right: "20%",
-    width: "120%",
+    right: "25%",
+    width: "125%",
   },
   text: {
     backgroundColor: theme.palette.primary.main,
@@ -36,7 +33,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 //RELATIVE ONLY FOR TOP RIGHT COMPONENT
-function CpaBox(props) {
+function CpaBoxOne(props) {
+  console.log(props);
   const classes = useStyles();
   return (
     <Grid
@@ -56,4 +54,4 @@ function CpaBox(props) {
   );
 }
 
-export default CpaBox;
+export default CpaBoxOne;

@@ -4,9 +4,12 @@ import HeaderBox from "../components/explore/HeaderBox";
 import ChartBox from "../components/explore/ChartBox";
 import CookiesBox from "../components/explore/CookiesBox";
 import TagsBox from "../components/explore/TagsBox";
+import ClientBox from "../components/explore/ClientBox";
+import RatingBox from "../components/explore/RatingBox";
+import CpaBoxOne from "../components/explore/CpaBoxOne";
+import CpaBoxTwo from "../components/explore/CpaBoxTwo";
 
-import { makeStyles, Box, Grid } from "@material-ui/core";
-import CpaBox from "../components/explore/CpaBox";
+import { makeStyles, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     //padding: "0",
     //border: "2px solid black",
     boxSizing: "border-box",
-    padding: theme.spacing(4),
+    padding: theme.spacing(5),
     //paddingRight: theme.spacing(5),
   },
   brd: {
@@ -63,6 +66,7 @@ function Explore() {
         style={{
           border: "4px solid blue",
           boxSizing: "border-box",
+          marginBottom: "40px",
         }}
       >
         <Grid
@@ -103,8 +107,35 @@ function Explore() {
         <ChartBox />
         {/* </Grid> */}
         <Grid item style={{ position: "relative", width: "100%" }}>
-          <CpaBox />
+          <CpaBoxOne />
         </Grid>
+      </Grid>
+      <Grid
+        container
+        item
+        lg={12}
+        className={classes.brd}
+        style={{ marginBottom: "40px" }}
+      >
+        <ClientBox />
+      </Grid>
+      <Grid
+        container
+        item
+        xl={12}
+        lg={12}
+        md={12}
+        className={classes.brd}
+        style={{ marginBottom: "40px", border: "4px solid orange" }}
+        spacing={0}
+        direction="row"
+      >
+        <Grid item xl={4} lg={4} md={4}>
+          <CpaBoxTwo />
+          <RatingBox />
+        </Grid>
+        <Grid item xl={5} lg={5} md={5}></Grid>
+        <Grid item xl={3} lg={3} md={3}></Grid>
       </Grid>
     </Grid>
   );

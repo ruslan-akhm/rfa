@@ -1,5 +1,6 @@
 import React from "react";
 import Earning from "./Earning";
+import Person from "./Person";
 
 import {
   makeStyles,
@@ -64,22 +65,23 @@ const useStyles = makeStyles(theme => ({
   },
   dividerBefore: {
     display: "flex",
-
+    //width: "fit-content",
     justifyContent: "center",
     flexDirection: "column",
-    marginLeft: theme.spacing(6),
-    paddingLeft: theme.spacing(6),
+    //alignItems: "flex-start",
+    //marginLeft: theme.spacing(3),
+    //paddingLeft: theme.spacing(6),
     position: "relative",
     "&::before": {
       position: "absolute",
       top: "20px",
-      left: "-10px",
+      left: "-20px",
       content: '""',
       width: "2px",
       display: "block",
-      backgroundColor: theme.palette.background.main,
+      backgroundColor: theme.palette.secondary.main,
       height: theme.spacing(4),
-      marginRight: theme.spacing(3),
+      marginRight: theme.spacing(2),
     },
   },
   brd: {
@@ -107,39 +109,45 @@ function HeaderBox() {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.headerContainer} justify="space-between">
-      <Grid item className={classes.sliderBefore}>
+    <Grid
+      container
+      className={classes.headerContainer}
+      justify="space-between"
+      direction="row"
+    >
+      <Grid item className={classes.sliderBefore + " " + classes.brd}>
         <Typography>Individual tax return YEAR</Typography>
-        <Typography className={classes.text}>
+        <Typography variant="subtitle2" className={classes.text}>
           <ScheduleIcon className={classes.icons + " " + classes.text} />
           DATE
         </Typography>
       </Grid>
-      <Grid item className={classes.dividerBefore}>
-        <Avatar
+
+      <Grid item className={classes.dividerBefore + " " + classes.brd}>
+        {/* <Avatar
           className={classes.avatar}
           alt=""
           src="../../img/person.jpg"
         ></Avatar>
       </Grid>
-      <Grid item>
+      <Grid item className={classes.brd}>
         <Typography>Name Name</Typography>
-        <Typography className={classes.text}>
+        <Typography variant="subtitle2" className={classes.text}>
           <LocationOnIcon className={classes.icons + " " + classes.text} />
           LOCATION
-        </Typography>
+        </Typography> */}
+        <Person />
       </Grid>
-      <Grid item className={classes.dividerBefore}>
-        {/* <Typography>AMOUNT</Typography>
-        <Typography className={classes.text}>Potential Earning</Typography> */}
+
+      <Grid item className={classes.dividerBefore + " " + classes.brd}>
         <Earning />
       </Grid>
-      <Grid item className={classes.flexCenter}>
+      <Grid item className={classes.flexCenter + " " + classes.brd}>
         <IconButton className={classes.brd}>
           <AddCircleIcon className={classes.addCircle} />
         </IconButton>
       </Grid>
-      <Grid item className={classes.dividerBefore}>
+      <Grid item className={classes.dividerBefore + " " + classes.brd}>
         <Button variant="contained" color="primary" className={classes.buttons}>
           Contact
         </Button>

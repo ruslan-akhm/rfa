@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
   text: {
     display: "flex",
     alignItems: "center",
-    fontSize: "14px",
+    //fontSize: "14px",
   },
 }));
 
@@ -15,7 +15,9 @@ function Earning(props) {
   return (
     <Grid container direction="column" style={{ width: "fit-content" }}>
       <Typography>AMOUNT</Typography>
-      <Typography className={classes.text}>Potential Earning</Typography>
+      <Typography className={classes.text} variant="subtitle2">
+        Potential Earning
+      </Typography>
     </Grid>
   );
 }
