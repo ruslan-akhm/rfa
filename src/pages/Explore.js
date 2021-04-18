@@ -8,6 +8,8 @@ import ClientBox from "../components/explore/ClientBox";
 import RatingBox from "../components/explore/RatingBox";
 import CpaBoxOne from "../components/explore/CpaBoxOne";
 import CpaBoxTwo from "../components/explore/CpaBoxTwo";
+import TransactionsBox from "../components/explore/TransactionsBox";
+import FileUpload from "../components/explore/FileUpload";
 
 import { makeStyles, Grid } from "@material-ui/core";
 
@@ -86,7 +88,7 @@ function Explore() {
           lg={5}
           className={classes.brd}
           spacing={0}
-          style={{ marginRight: "40px" }}
+          style={{ marginRight: "80px" }}
         >
           <CookiesBox />
         </Grid>
@@ -127,15 +129,19 @@ function Explore() {
         md={12}
         className={classes.brd}
         style={{ marginBottom: "40px", border: "4px solid orange" }}
-        spacing={0}
         direction="row"
+        justify="space-between"
       >
         <Grid item xl={4} lg={4} md={4}>
           <CpaBoxTwo />
           <RatingBox />
         </Grid>
-        <Grid item xl={5} lg={5} md={5}></Grid>
-        <Grid item xl={3} lg={3} md={3}></Grid>
+        <Grid item xl={5} lg={5} md={5}>
+          <TransactionsBox />
+        </Grid>
+        <Grid item xl={2} lg={2} md={2}>
+          <FileUpload />
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#fff",
     borderRadius: "20px",
     minHeight: theme.spacing(8),
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     width: "100%",
     //marginTop: theme.spacing(5),
     border: "2px solid red",

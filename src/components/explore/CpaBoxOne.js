@@ -20,8 +20,8 @@ const useStyles = makeStyles(theme => ({
   relative: {
     position: "relative",
     bottom: "0",
-    right: "25%",
-    width: "125%",
+    right: "20%",
+    width: "120%",
   },
   text: {
     backgroundColor: theme.palette.primary.main,
