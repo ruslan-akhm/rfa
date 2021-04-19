@@ -3,7 +3,7 @@ import { createMuiTheme } from "@material-ui/core";
 export const theme = createMuiTheme({
   typography: {
     fontFamily: '"Roboto"',
-    fontSize: 18,
+    fontSize: 16,
     button: {
       textTransform: "none",
     },

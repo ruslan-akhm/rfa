@@ -21,8 +21,6 @@ const useStyles = makeStyles(theme => ({
   dollarIcon: {
     color: `${theme.palette.solidGray.main} !important`,
     backgroundColor: theme.palette.background.main,
-    //width: theme.spacing(3),
-    //height: theme.spacing(2),
     fontSize: "16px",
     fontWeight: "bold",
     marginRight: theme.spacing(2),
@@ -74,7 +72,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-//RELATIVE ONLY FOR TOP RIGHT COMPONENT
 function TransactionsBox(props) {
   const classes = useStyles();
   return (

@@ -19,27 +19,22 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "15px",
     border: `2px dashed ${theme.palette.background.main}`,
     padding: theme.spacing(3),
+    textAlign: "center",
   },
   uploadButton: {
     borderRadius: "25px",
-    padding: theme.spacing(1),
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
+    padding: theme.spacing(2),
     marginTop: theme.spacing(3),
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
-//RELATIVE ONLY FOR TOP RIGHT COMPONENT
-function FileUpload(props) {
+function FileUploadBox(props) {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      //   justify="center"
-      //   alignItems="center"
-      //   direction="column"
-      className={classes.uploadContainer}
-    >
+    <Grid container className={classes.uploadContainer}>
       <Grid
         item
         container
@@ -67,4 +62,4 @@ function FileUpload(props) {
   );
 }
 
-export default FileUpload;
+export default FileUploadBox;

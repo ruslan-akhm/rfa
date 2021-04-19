@@ -12,25 +12,15 @@ import {
 } from "@material-ui/core";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  tagsContainer: {
-    position: "relative",
-    backgroundColor: "#fff",
-    borderRadius: "20px",
-    minHeight: theme.spacing(8),
-    padding: theme.spacing(4),
-    width: "100%",
-    border: "2px solid red",
-  },
-  text: {
-    display: "flex",
-    alignItems: "center",
-    fontSize: "14px",
+  confirmButton: {
+    padding: theme.spacing(2),
+    width: theme.spacing(18),
+    borderRadius: "15px",
   },
   icons: {
     marginRight: theme.spacing(1),
@@ -52,10 +42,6 @@ const useStyles = makeStyles(theme => ({
       borderRadius: "20px",
       width: "fit-content",
       margin: theme.spacing(0.5),
-      // color: active ? "#fff" : theme.palette.primary.main,
-      // backgroundColor: active
-      //   ? theme.palette.primary.main
-      //   : theme.palette.secondary.main,
     },
   },
   menuButton: {
@@ -63,17 +49,24 @@ const useStyles = makeStyles(theme => ({
     top: theme.spacing(2),
     right: theme.spacing(2),
   },
-  confirmButton: {
-    padding: theme.spacing(2),
-    width: theme.spacing(18),
-    borderRadius: "15px",
+  tagsContainer: {
+    position: "relative",
+    backgroundColor: "#fff",
+    borderRadius: "20px",
+    minHeight: theme.spacing(8),
+    padding: theme.spacing(4),
+    width: "100%",
+    border: "2px solid red",
+  },
+  text: {
+    display: "flex",
+    alignItems: "center",
+    fontSize: "14px",
   },
 }));
 
 function TagsBox(props) {
   const classes = useStyles();
-
-  //WHEN MAPPING - SHOULD GIVE ref / state - active=true/false -
 
   return (
     <Grid container className={classes.tagsContainer} direction="column">

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../../img/logo.svg";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   makeStyles,
@@ -11,7 +12,6 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginLeft: theme.spacing(2),
+  },
+  activeButton: {
+    color: theme.palette.primary.main + " !important",
   },
   bell: {
     marginLeft: "auto",
@@ -38,6 +41,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(2),
     },
   },
+  links: {
+    textDecoration: "none",
+  },
   name: {
     marginRight: theme.spacing(1),
     marginLeft: theme.spacing(1),
@@ -47,67 +53,106 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
     color: theme.palette.solidGray.main,
     minWidth: "fit-content",
-    //BASED ON WHERE WE ARE - COLOR BUTTONS ARE DIFFERENT
   },
   navbarContainer: {
     backgroundColor: "#fff",
     borderRadius: "20px",
     minHeight: theme.spacing(8),
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
     width: "100%",
-    //marginTop: theme.spacing(5),
     border: "2px solid red",
   },
-
+  navbarWrapper: {
+    backgroundColor: theme.palette.background.main,
+    maxWidth: "100%",
+    boxSizing: "border-box",
+    padding: theme.spacing(5),
+  },
   brd: {
     border: "1px solid red",
   },
 }));
 
-function NavbarBox() {
+function NavbarBox(props) {
   const classes = useStyles();
+
+  const [currentPage, setCurrentPage] = useState();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const page = path.match(/[^/]+$/gi);
+    setCurrentPage(page[0]);
+  }, [location]);
+
   return (
-    <Grid
-      container
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-      //spacing={1}
-      className={classes.navbarContainer}
-    >
-      <Grid item lg={1} className={classes.navbarButtons + " " + classes.brd}>
-        <Logo />
-      </Grid>
-      <Grid item lg={3} className={classes.dividerBefore + " " + classes.brd}>
-        <Button color="primary" className={classes.navbarButtons}>
-          Explore
-        </Button>
-        <Button color="primary" className={classes.navbarButtons}>
-          My Clients
-        </Button>
-        <Button color="primary" className={classes.navbarButtons}>
-          Blog
-        </Button>
-      </Grid>
-      <Grid item className={classes.bell + " " + classes.brd}>
-        <IconButton color="solidGray">
-          <NotificationsNoneIcon />
-        </IconButton>
-      </Grid>
-      <Grid item className={classes.dividerBefore + " " + classes.brd}>
-        <Avatar
-          className={classes.avatar}
-          alt=""
-          src="../../img/person.jpg"
-        ></Avatar>
-      </Grid>
-      <Grid item className={classes.brd}>
-        <Typography className={classes.name}>Name Name</Typography>
-      </Grid>
-      <Grid item className={classes.brd}>
-        <IconButton color="solidGray">
-          <ExpandMoreIcon />
-        </IconButton>
+    <Grid container className={classes.navbarWrapper}>
+      <Grid
+        item
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="center"
+        className={classes.navbarContainer}
+      >
+        <Grid item lg={1} className={classes.navbarButtons + " " + classes.brd}>
+          <Logo />
+        </Grid>
+        <Grid item lg={3} className={classes.dividerBefore + " " + classes.brd}>
+          <Link to="/explore" className={classes.links}>
+            <Button
+              className={
+                classes.navbarButtons +
+                " " +
+                (currentPage === "explore" ? classes.activeButton : null)
+              }
+            >
+              Explore
+            </Button>
+          </Link>
+          <Link to="/clients" className={classes.links}>
+            <Button
+              className={
+                classes.navbarButtons +
+                " " +
+                (currentPage === "clients" ? classes.activeButton : null)
+              }
+            >
+              My Clients
+            </Button>
+          </Link>
+          <Link to="/blog" className={classes.links}>
+            <Button
+              className={
+                classes.navbarButtons +
+                " " +
+                (currentPage === "blog" ? classes.activeButton : null)
+              }
+            >
+              Blog
+            </Button>
+          </Link>
+        </Grid>
+        <Grid item className={classes.bell + " " + classes.brd}>
+          <IconButton color="solidGray">
+            <NotificationsNoneIcon />
+          </IconButton>
+        </Grid>
+        <Grid item className={classes.dividerBefore + " " + classes.brd}>
+          <Avatar
+            className={classes.avatar}
+            alt=""
+            src="../../img/person.jpg"
+          ></Avatar>
+        </Grid>
+        <Grid item className={classes.brd}>
+          <Typography className={classes.name}>Name Name</Typography>
+        </Grid>
+        <Grid item className={classes.brd}>
+          <IconButton color="solidGray">
+            <ExpandMoreIcon />
+          </IconButton>
+        </Grid>
       </Grid>
     </Grid>
   );

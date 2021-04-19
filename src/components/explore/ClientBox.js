@@ -1,4 +1,5 @@
 import React from "react";
+import Earning from "./Earning";
 
 import {
   makeStyles,
@@ -9,8 +10,6 @@ import {
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import Earning from "./Earning";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,23 +30,24 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#fff",
     borderRadius: "20px",
     border: "2px solid red",
-    //marginTop: "40px",
+    width: "100%",
   },
   dividerBefore: {
     height: "100%",
     display: "flex",
     alignItems: "center",
     position: "relative",
-    marginLeft: "60px",
+    paddingLeft: "20px",
+    paddingRight: "20px",
     "&::before": {
       position: "absolute",
-      top: "15px",
-      left: "-40px",
+      top: "20%",
+      left: "0px",
       content: '""',
       width: "2px",
       display: "block",
       backgroundColor: theme.palette.background.main,
-      height: theme.spacing(4),
+      height: "60%",
       marginRight: theme.spacing(3),
     },
   },
@@ -64,14 +64,14 @@ const useStyles = makeStyles(theme => ({
     marginRight: "auto",
   },
 }));
-//RELATIVE ONLY FOR TOP RIGHT COMPONENT
-function ClientBox(props) {
+
+function ClientBox() {
   const classes = useStyles();
   return (
     <Grid
       container
       direction="row"
-      justify="flex-start"
+      justify="space-between"
       alignItems="center"
       className={classes.clientContainer}
     >
@@ -83,21 +83,13 @@ function ClientBox(props) {
         <Typography>Individual Tax Return YEAR</Typography>
         <Typography variant="subtitle2">Potential Client</Typography>
       </Grid>
-      <Grid
-        item
-        className={classes.dividerBefore}
-        style={{ border: "2px solid black" }}
-      >
+      <Grid item className={classes.dividerBefore}>
         <Earning />
+        <IconButton>
+          <AddCircleIcon />
+        </IconButton>
       </Grid>
-      <IconButton>
-        <AddCircleIcon />
-      </IconButton>
-      <Grid
-        item
-        className={classes.dividerBefore}
-        style={{ border: "2px solid black" }}
-      >
+      <Grid item className={classes.dividerBefore}>
         <Button
           variant="contained"
           className={classes.buttons + " " + classes.passButton}

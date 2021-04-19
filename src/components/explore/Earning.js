@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 
@@ -6,7 +7,6 @@ const useStyles = makeStyles(theme => ({
   text: {
     display: "flex",
     alignItems: "center",
-    //fontSize: "14px",
   },
 }));
 

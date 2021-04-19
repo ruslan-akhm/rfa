@@ -2,8 +2,6 @@ import React from "react";
 
 import { makeStyles, Grid, Typography, IconButton } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
-//import Cpa from "./Cpa";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
   closeButtonWrapper: {
     border: "none",
-    width: "8px",
-    height: "8px",
+    width: "10px",
+    height: "10px",
     backgroundColor: "#fff !important",
   },
   cpaContainer: {
@@ -27,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     borderRadius: "20px",
     border: "2px solid red",
-    //marginTop: "40px",
+    width: "100%",
   },
   text: {
     backgroundColor: "#fff",
@@ -38,15 +36,15 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
   },
 }));
-//RELATIVE ONLY FOR TOP RIGHT COMPONENT
-function CpaBoxTwo(props) {
-  console.log(props);
+
+function CpaBoxTwo() {
   const classes = useStyles();
   return (
     <Grid
       container
       justify="space-between"
       alignItems="center"
+      md={12}
       className={classes.cpaContainer}
     >
       <Grid item className={classes.text}>

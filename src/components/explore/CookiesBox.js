@@ -8,7 +8,6 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CancelIcon from "@material-ui/icons/Cancel";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,12 +34,10 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     backgroundColor: "#fff",
     borderRadius: "20px",
-    minHeight: "fit-content", //theme.spacing(8),
+    minHeight: "fit-content",
     boxSizing: "border-box",
-    //height: "100%",
     padding: theme.spacing(3),
     width: "100%",
-    //marginTop: theme.spacing(-15), //"-150px",
     border: "2px solid red",
   },
   text: {
@@ -53,12 +50,7 @@ const useStyles = makeStyles(theme => ({
 function CookiesBox(props) {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      direction="column"
-      //spacing={3}
-      className={classes.cookiesContainer}
-    >
+    <Grid container direction="column" className={classes.cookiesContainer}>
       <Grid item>
         <Typography variant="h6">We use cookies!</Typography>
       </Grid>

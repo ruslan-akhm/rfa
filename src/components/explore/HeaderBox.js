@@ -6,14 +6,13 @@ import {
   makeStyles,
   Grid,
   Typography,
-  Avatar,
   IconButton,
   Button,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import ScheduleIcon from "@material-ui/icons/Schedule";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,96 +25,91 @@ const useStyles = makeStyles(theme => ({
   },
   addCircle: {
     color: theme.palette.green.main,
-    //marginLeft: theme.spacing(1),
   },
   buttons: {
     borderRadius: "15px",
     padding: theme.spacing(2),
     width: "120px",
-  },
-  headerContainer: {
-    backgroundColor: "#fff",
-    borderRadius: "20px",
-    width: "100%",
-    minHeight: theme.spacing(8),
-    padding: theme.spacing(4),
-    border: "2px solid red",
-    //marginBottom: theme.spacing(8),
-    marginRight: theme.spacing(5),
-  },
-  sliderBefore: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4),
-    display: "flex",
-    flexDirection: "column",
-    //alignItems: "center",
-    position: "relative",
-    "&::before": {
-      position: "absolute",
-      top: "20px",
-      left: "-10px",
-      content: '"|||"',
-      fontSize: "20px",
-      //width: "12px",
-      display: "block",
-      color: theme.palette.background.main,
-      height: theme.spacing(4),
-      marginRight: theme.spacing(2),
-    },
+    marginLeft: "auto",
   },
   dividerBefore: {
     display: "flex",
-    //width: "fit-content",
     justifyContent: "center",
-    flexDirection: "column",
-    //alignItems: "flex-start",
-    //marginLeft: theme.spacing(3),
-    //paddingLeft: theme.spacing(6),
+    alignItems: "center",
+    flexDirection: "row",
     position: "relative",
     "&::before": {
       position: "absolute",
-      top: "20px",
-      left: "-20px",
+      top: "20%",
+      left: "-2px",
       content: '""',
       width: "2px",
       display: "block",
       backgroundColor: theme.palette.secondary.main,
-      height: theme.spacing(4),
-      marginRight: theme.spacing(2),
+      height: "60%",
     },
   },
-  brd: {
-    border: "1px solid black",
+  earning: {
+    width: "fit-content",
   },
   flexCenter: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
-  // text: {
-  //   //padding: "0",
-  //   //lineHeight: "18px",
-  //   display: "flex",
-  //   //flexDirection: "center",
-  //   alignItems: "center",
-  //   fontSize: "14px",
-  // },
+  headerContainer: {
+    backgroundColor: "#fff",
+    borderRadius: "20px",
+    width: "100%",
+    minHeight: theme.spacing(8),
+    padding: theme.spacing(2),
+    border: "2px solid red",
+  },
   icons: {
     marginRight: theme.spacing(1),
+  },
+  sliderBefore: {
+    paddingLeft: theme.spacing(4),
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    position: "relative",
+    "&::before": {
+      position: "absolute",
+      top: "25%",
+      left: "-5px",
+      content: '"|||"',
+      fontSize: "20px",
+      display: "block",
+      color: theme.palette.background.main,
+      height: "50%",
+    },
+  },
+
+  brd: {
+    border: "1px solid black",
+  },
+  margin: {
+    marginRight: theme.spacing(5),
   },
 }));
 
 function HeaderBox() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Grid
       container
-      className={classes.headerContainer}
+      className={
+        classes.headerContainer + " " + (isMobile ? null : classes.margin)
+      }
       justify="space-between"
       direction="row"
     >
-      <Grid item className={classes.sliderBefore + " " + classes.brd}>
+      <Grid item lg={4} md={4} className={classes.sliderBefore}>
         <Typography>Individual tax return YEAR</Typography>
         <Typography variant="subtitle2" className={classes.text}>
           <ScheduleIcon className={classes.icons + " " + classes.text} />
@@ -123,31 +117,29 @@ function HeaderBox() {
         </Typography>
       </Grid>
 
-      <Grid item className={classes.dividerBefore + " " + classes.brd}>
-        {/* <Avatar
-          className={classes.avatar}
-          alt=""
-          src="../../img/person.jpg"
-        ></Avatar>
-      </Grid>
-      <Grid item className={classes.brd}>
-        <Typography>Name Name</Typography>
-        <Typography variant="subtitle2" className={classes.text}>
-          <LocationOnIcon className={classes.icons + " " + classes.text} />
-          LOCATION
-        </Typography> */}
+      <Grid item lg={3} md={3} className={classes.dividerBefore}>
         <Person />
       </Grid>
 
-      <Grid item className={classes.dividerBefore + " " + classes.brd}>
-        <Earning />
+      <Grid
+        item
+        container
+        lg={3}
+        md={3}
+        direction="row"
+        justify="space-between"
+        className={classes.dividerBefore}
+      >
+        <Grid item className={classes.earning}>
+          <Earning />
+        </Grid>
+        <Grid item>
+          <IconButton>
+            <AddCircleIcon className={classes.addCircle} />
+          </IconButton>
+        </Grid>
       </Grid>
-      <Grid item className={classes.flexCenter + " " + classes.brd}>
-        <IconButton className={classes.brd}>
-          <AddCircleIcon className={classes.addCircle} />
-        </IconButton>
-      </Grid>
-      <Grid item className={classes.dividerBefore + " " + classes.brd}>
+      <Grid item lg={2} md={2} className={classes.dividerBefore}>
         <Button variant="contained" color="primary" className={classes.buttons}>
           Contact
         </Button>

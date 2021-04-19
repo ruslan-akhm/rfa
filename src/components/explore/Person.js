@@ -1,6 +1,6 @@
 import React from "react";
 
-import { makeStyles, Typography, Avatar, Grid } from "@material-ui/core";
+import { makeStyles, Typography, Avatar, Grid, Badge } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles(theme => ({
@@ -8,36 +8,61 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   avatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    marginRight: theme.spacing(2),
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    marginRight: theme.spacing(1),
+  },
+  avatarContainer: {
+    position: "relative",
+  },
+  badge: {
+    backgroundColor: theme.palette.green.main,
+    position: "absolute",
+    top: "-2px",
+    right: "11px",
+    width: "9px",
+    height: "9px",
+    borderRadius: "50%",
+    border: "2px solid #fff",
+    zIndex: "2",
   },
   icons: {
     marginRight: theme.spacing(1),
   },
+  personContainer: {
+    border: "2px solid orange",
+  },
   text: {
-    // backgroundColor: theme.palette.primary.main,
-    // color: "#fff",
-    // padding: theme.spacing(1),
-    // width: theme.spacing(9),
-    // borderRadius: "25px",
-    textAlign: "center",
+    textAlign: "left",
   },
 }));
 
 function Person(props) {
   const classes = useStyles();
   return (
-    <Grid container direction="row">
-      <Grid item>
+    <Grid
+      container
+      direction="row"
+      justify="flex-start"
+      alignItems="center"
+      className={classes.personContainer}
+    >
+      <Grid item className={classes.avatarContainer}>
+        <Badge variant="dot" className={classes.badge}></Badge>
         <Avatar
+          style={{ border: "1px solid green" }}
           className={classes.avatar}
           alt=""
           src="../../img/person.jpg"
         ></Avatar>
       </Grid>
-      <Grid item>
-        <Typography>Name Name</Typography>
+      <Grid
+        item
+        style={{
+          border: "1px solid green",
+        }}
+      >
+        <Typography style={{ border: "1px solid green" }}>Name Name</Typography>
         <Typography variant="subtitle2" className={classes.text}>
           <LocationOnIcon className={classes.icons + " " + classes.text} />
           LOCATION

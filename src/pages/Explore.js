@@ -1,5 +1,5 @@
-import React from "react";
-import NavbarBox from "../components/explore/NavbarBox";
+import React, { useEffect } from "react";
+
 import HeaderBox from "../components/explore/HeaderBox";
 import ChartBox from "../components/explore/ChartBox";
 import CookiesBox from "../components/explore/CookiesBox";
@@ -9,9 +9,9 @@ import RatingBox from "../components/explore/RatingBox";
 import CpaBoxOne from "../components/explore/CpaBoxOne";
 import CpaBoxTwo from "../components/explore/CpaBoxTwo";
 import TransactionsBox from "../components/explore/TransactionsBox";
-import FileUpload from "../components/explore/FileUpload";
+import FileUploadBox from "../components/explore/FileUploadBox";
 
-import { makeStyles, Grid } from "@material-ui/core";
+import { makeStyles, Grid, useMediaQuery, useTheme } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,44 +21,29 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.main,
     minHeight: "100vh",
     maxWidth: "100%",
-    //padding: "0",
-    //border: "2px solid black",
     boxSizing: "border-box",
-    padding: theme.spacing(5),
-    //paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    paddingRight: theme.spacing(5),
   },
   brd: {
     border: "2px solid black",
-    //boxSizing: "border-box",
   },
 }));
 
-//NEEDS TO CHECK PIXELS AND WRAP AFTER 75% 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function Explore(props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-function Explore() {
   const classes = useStyles();
-  //#EBEBF9
-  //<Box className={classes.page}> </Box>
 
   return (
     <Grid
       container
       className={classes.page}
-      //spacing={2}
       direction="row"
       alignItems="flex-start"
       justify="space-between"
     >
-      <Grid
-        container
-        item
-        lg={12}
-        className={classes.brd}
-        style={{ marginBottom: "40px" }}
-      >
-        <NavbarBox />
-      </Grid>
-
       <Grid
         container
         item
@@ -70,6 +55,7 @@ function Explore() {
           boxSizing: "border-box",
           marginBottom: "40px",
         }}
+        justify={isMobile ? "space-evenly" : "flex-start"}
       >
         <Grid
           container
@@ -79,20 +65,20 @@ function Explore() {
           md={12}
           className={classes.brd}
           style={{ marginBottom: "40px" }}
-          spacing={0}
         >
           <HeaderBox />
         </Grid>
         <Grid
           item
           lg={5}
+          md={5}
           className={classes.brd}
           spacing={0}
-          style={{ marginRight: "80px" }}
+          style={isMobile ? { marginRight: "0" } : { marginRight: "60px" }}
         >
           <CookiesBox />
         </Grid>
-        <Grid item lg={5} className={classes.brd}>
+        <Grid item lg={5} md={5} className={classes.brd}>
           <TagsBox />
         </Grid>
       </Grid>
@@ -102,20 +88,23 @@ function Explore() {
         item
         xl={3}
         lg={3}
-        md={3}
-        style={{ border: "4px solid green", position: "relative" }}
+        md={12}
+        style={{
+          border: "4px solid green",
+          marginBottom: "40px",
+          position: "relative",
+        }}
       >
-        {/* <Grid item lg={12} className={classes.brd}> */}
         <ChartBox />
-        {/* </Grid> */}
         <Grid item style={{ position: "relative", width: "100%" }}>
           <CpaBoxOne />
         </Grid>
       </Grid>
       <Grid
-        container
         item
+        container
         lg={12}
+        md={12}
         className={classes.brd}
         style={{ marginBottom: "40px" }}
       >
@@ -129,18 +118,33 @@ function Explore() {
         md={12}
         className={classes.brd}
         style={{ marginBottom: "40px", border: "4px solid orange" }}
-        direction="row"
-        justify="space-between"
+        direction={isMobile ? "column" : "row"}
+        justify={isMobile ? "center" : "space-between"}
+        alignItems={isMobile ? "center" : "space-between"}
       >
-        <Grid item xl={4} lg={4} md={4}>
+        <Grid
+          item
+          xl={4}
+          lg={4}
+          md={12}
+          sm={12}
+          xs={12}
+          style={isMobile ? { marginBottom: "40px" } : { marginBottom: "0" }}
+        >
           <CpaBoxTwo />
           <RatingBox />
         </Grid>
-        <Grid item xl={5} lg={5} md={5}>
+        <Grid
+          item
+          xl={5}
+          lg={5}
+          md={12}
+          style={isMobile ? { marginBottom: "40px" } : { marginBottom: "0" }}
+        >
           <TransactionsBox />
         </Grid>
-        <Grid item xl={2} lg={2} md={2}>
-          <FileUpload />
+        <Grid item xl={2} lg={2} md={12}>
+          <FileUploadBox />
         </Grid>
       </Grid>
     </Grid>

@@ -8,10 +8,8 @@ import {
   IconButton,
   Button,
 } from "@material-ui/core";
-//import { DataGrid } from "@material-ui/data-grid";
 import CancelIcon from "@material-ui/icons/Cancel";
 import StarIcon from "@material-ui/icons/Star";
-//import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "20px",
     border: "2px solid red",
     marginTop: "40px",
+    width: "100%",
   },
   star: {
     fill: "#FFB800",
@@ -60,7 +59,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-//RELATIVE ONLY FOR TOP RIGHT COMPONENT
 function RatingBox(props) {
   const classes = useStyles();
   return (
@@ -69,6 +67,7 @@ function RatingBox(props) {
       justify="space-between"
       alignItems="center"
       direction="column"
+      md={12}
       className={classes.ratingContainer}
     >
       <Person />
