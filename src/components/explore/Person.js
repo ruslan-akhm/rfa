@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(6),
     height: theme.spacing(6),
     marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
   },
   avatarContainer: {
     position: "relative",
@@ -29,11 +30,10 @@ const useStyles = makeStyles(theme => ({
   icons: {
     marginRight: theme.spacing(1),
   },
-  personContainer: {
-    border: "2px solid orange",
-  },
   text: {
-    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    fontSize: "14px",
   },
 }));
 
@@ -45,24 +45,19 @@ function Person(props) {
       direction="row"
       justify="flex-start"
       alignItems="center"
-      className={classes.personContainer}
+      wrap="nowrap"
     >
       <Grid item className={classes.avatarContainer}>
+        {/*isOnline? badge : null  */}
         <Badge variant="dot" className={classes.badge}></Badge>
         <Avatar
-          style={{ border: "1px solid green" }}
           className={classes.avatar}
           alt=""
           src="../../img/person.jpg"
         ></Avatar>
       </Grid>
-      <Grid
-        item
-        style={{
-          border: "1px solid green",
-        }}
-      >
-        <Typography style={{ border: "1px solid green" }}>Name Name</Typography>
+      <Grid item>
+        <Typography>NameName NameNameNNN</Typography>
         <Typography variant="subtitle2" className={classes.text}>
           <LocationOnIcon className={classes.icons + " " + classes.text} />
           LOCATION

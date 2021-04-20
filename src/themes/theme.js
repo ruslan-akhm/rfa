@@ -17,6 +17,3 @@ export const theme = createMuiTheme({
     green: { main: "#00D555" },
   },
 });
-
-//"#11cb5f"
-//#F2F5FE

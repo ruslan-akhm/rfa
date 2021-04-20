@@ -63,10 +63,13 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     minHeight: theme.spacing(8),
     padding: theme.spacing(2),
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   icons: {
     marginRight: theme.spacing(1),
+  },
+  margin: {
+    marginRight: theme.spacing(5),
   },
   sliderBefore: {
     paddingLeft: theme.spacing(4),
@@ -86,12 +89,13 @@ const useStyles = makeStyles(theme => ({
       height: "50%",
     },
   },
-
+  text: {
+    display: "flex",
+    alignItems: "center",
+    fontSize: "14px",
+  },
   brd: {
     border: "1px solid black",
-  },
-  margin: {
-    marginRight: theme.spacing(5),
   },
 }));
 

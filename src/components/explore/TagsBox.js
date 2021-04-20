@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: theme.spacing(8),
     padding: theme.spacing(4),
     width: "100%",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   text: {
     display: "flex",

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     backgroundColor: "#fff",
     borderRadius: "20px",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
     marginTop: "40px",
     width: "100%",
   },
@@ -67,7 +67,7 @@ function RatingBox(props) {
       justify="space-between"
       alignItems="center"
       direction="column"
-      md={12}
+      //md={12}
       className={classes.ratingContainer}
     >
       <Person />

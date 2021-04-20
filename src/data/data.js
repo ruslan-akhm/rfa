@@ -1,3 +1,5 @@
+import person from "../img/person.jpg";
+
 export const taxReturns = [
   {
     taxYear: "2019",
@@ -29,15 +31,28 @@ export const taxReturns = [
   },
 ];
 
+export const milestones = {
+  rating: {
+    current: 5.0,
+    max: 5.0,
+  },
+  projects: {
+    completed: 4,
+    total: 8,
+  },
+  dataPoints: [1000, 1250, 1000, 1000, 1000, 750, 800, 750],
+};
+
 export const profile = {
   id: "1",
   lastName: "Black",
   firstName: "Annette",
-  avatar: "../../img/person.jpg",
+  avatar: person,
   rating: "5.0",
   certificates: "6",
   projects: "45",
   taxReturns: taxReturns,
+  milestones: milestones,
   location: "New York, NY",
   title: "Certified Public Accountant",
   type: "Professional",
@@ -49,4 +64,17 @@ export const profile = {
 //Milestones projects and rating should be combined with projects and rating reflected at bottom-left card, if
 //those are the same data. (I considered they are not since there are different number of projects reflected)
 
-export const isOnline = true;
+export const notifications = {
+  new: [
+    {
+      text: "Lorem Ipsum",
+      time: "hh:mm, mm/dd/yyyy",
+    },
+  ],
+  past: [
+    {
+      text: "Loremed Ipsumed...",
+      time: "hh:mm, mm/dd/yyyy",
+    },
+  ],
+};

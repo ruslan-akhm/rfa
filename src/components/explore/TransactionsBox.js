@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     backgroundColor: "#fff",
     borderRadius: "20px",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
 }));
 
@@ -113,7 +113,7 @@ function TransactionsBox(props) {
         </Grid>
         <Grid item>
           <Typography>Individual tax return YEAR</Typography>
-          <Typography variant="subtitle" className={classes.textSub}>
+          <Typography variant="subtitle2" className={classes.textSub}>
             DATE
           </Typography>
         </Grid>

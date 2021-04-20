@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
   closeButtonWrapper: {
     border: "none",
-    width: "10px",
-    height: "10px",
+    width: "7px !important",
+    height: "7px !important",
     backgroundColor: "#fff !important",
   },
   cpaContainer: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main,
     color: "#fff",
     borderRadius: "20px",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
     width: "100%",
   },
   text: {
@@ -44,7 +44,7 @@ function CpaBoxTwo() {
       container
       justify="space-between"
       alignItems="center"
-      md={12}
+      //md={12}
       className={classes.cpaContainer}
     >
       <Grid item className={classes.text}>

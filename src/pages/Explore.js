@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { UserStateContext, UserDispatchContext } from "../context/Context";
 
 import HeaderBox from "../components/explore/HeaderBox";
 import ChartBox from "../components/explore/ChartBox";
@@ -11,30 +12,57 @@ import CpaBoxTwo from "../components/explore/CpaBoxTwo";
 import TransactionsBox from "../components/explore/TransactionsBox";
 import FileUploadBox from "../components/explore/FileUploadBox";
 
-import { makeStyles, Grid, useMediaQuery, useTheme } from "@material-ui/core";
+import {
+  makeStyles,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  cpaBoxWrap: {
+    position: "relative",
+    width: "100%",
+  },
+  marginBottom: {
+    marginBottom: "40px",
+  },
+  marginRight: {
+    marginRight: "60px",
+  },
+  message: {
+    border: "2px solid red",
+    width: "100%",
+    height: "70vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   page: {
     backgroundColor: theme.palette.background.main,
-    minHeight: "100vh",
+    minHeight: "80vh",
     maxWidth: "100%",
     boxSizing: "border-box",
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
-  },
-  brd: {
-    border: "2px solid black",
+    paddingTop: "5vh",
   },
 }));
 
-function Explore(props) {
+function Explore() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const classes = useStyles();
+
+  const dispatch = useContext(UserDispatchContext);
+  const { isAuthenticated, loading } = useContext(UserStateContext);
+
+  console.log(isAuthenticated);
 
   return (
     <Grid
@@ -44,109 +72,98 @@ function Explore(props) {
       alignItems="flex-start"
       justify="space-between"
     >
-      <Grid
-        container
-        item
-        xl={9}
-        lg={9}
-        md={12}
-        style={{
-          border: "4px solid blue",
-          boxSizing: "border-box",
-          marginBottom: "40px",
-        }}
-        justify={isMobile ? "space-evenly" : "flex-start"}
-      >
-        <Grid
-          container
-          item
-          xl={12}
-          lg={12}
-          md={12}
-          className={classes.brd}
-          style={{ marginBottom: "40px" }}
-        >
-          <HeaderBox />
-        </Grid>
-        <Grid
-          item
-          lg={5}
-          md={5}
-          className={classes.brd}
-          spacing={0}
-          style={isMobile ? { marginRight: "0" } : { marginRight: "60px" }}
-        >
-          <CookiesBox />
-        </Grid>
-        <Grid item lg={5} md={5} className={classes.brd}>
-          <TagsBox />
-        </Grid>
-      </Grid>
+      {isAuthenticated ? (
+        <>
+          <Grid
+            container
+            item
+            xl={9}
+            lg={9}
+            md={12}
+            className={classes.marginBottom}
+            justify={isMobile ? "space-evenly" : "flex-start"}
+          >
+            <Grid
+              container
+              item
+              xl={12}
+              lg={12}
+              md={12}
+              className={classes.marginBottom}
+            >
+              <HeaderBox />
+            </Grid>
+            <Grid
+              item
+              lg={5}
+              md={5}
+              className={isMobile ? null : classes.marginRight}
+            >
+              <CookiesBox />
+            </Grid>
+            <Grid item lg={5} md={5}>
+              <TagsBox />
+            </Grid>
+          </Grid>
 
-      <Grid
-        container
-        item
-        xl={3}
-        lg={3}
-        md={12}
-        style={{
-          border: "4px solid green",
-          marginBottom: "40px",
-          position: "relative",
-        }}
-      >
-        <ChartBox />
-        <Grid item style={{ position: "relative", width: "100%" }}>
-          <CpaBoxOne />
+          <Grid
+            container
+            item
+            xl={3}
+            lg={3}
+            md={12}
+            className={classes.marginBottom}
+          >
+            <ChartBox />
+            <Grid item className={classes.cpaBoxWrap}>
+              <CpaBoxOne />
+            </Grid>
+          </Grid>
+          <Grid item container lg={12} md={12} className={classes.marginBottom}>
+            <ClientBox />
+          </Grid>
+          <Grid
+            container
+            item
+            xl={12}
+            lg={12}
+            md={12}
+            className={classes.marginBottom}
+            direction={isMobile ? "column" : "row"}
+            justify={isMobile ? "center" : "space-between"}
+            alignItems={isMobile ? "center" : "flex-start"}
+          >
+            <Grid
+              item
+              xl={4}
+              lg={4}
+              md={12}
+              sm={12}
+              xs={12}
+              className={isMobile ? classes.marginBottom : null}
+            >
+              <CpaBoxTwo />
+              <RatingBox />
+            </Grid>
+            <Grid
+              item
+              xl={5}
+              lg={5}
+              md={12}
+              className={isMobile ? classes.marginBottom : null}
+            >
+              <TransactionsBox />
+            </Grid>
+            <Grid item xl={2} lg={2} md={12}>
+              <FileUploadBox />
+            </Grid>
+          </Grid>
+        </>
+      ) : (
+        <Grid item className={classes.message}>
+          <Typography>Please, login to view the content</Typography>
         </Grid>
-      </Grid>
-      <Grid
-        item
-        container
-        lg={12}
-        md={12}
-        className={classes.brd}
-        style={{ marginBottom: "40px" }}
-      >
-        <ClientBox />
-      </Grid>
-      <Grid
-        container
-        item
-        xl={12}
-        lg={12}
-        md={12}
-        className={classes.brd}
-        style={{ marginBottom: "40px", border: "4px solid orange" }}
-        direction={isMobile ? "column" : "row"}
-        justify={isMobile ? "center" : "space-between"}
-        alignItems={isMobile ? "center" : "space-between"}
-      >
-        <Grid
-          item
-          xl={4}
-          lg={4}
-          md={12}
-          sm={12}
-          xs={12}
-          style={isMobile ? { marginBottom: "40px" } : { marginBottom: "0" }}
-        >
-          <CpaBoxTwo />
-          <RatingBox />
-        </Grid>
-        <Grid
-          item
-          xl={5}
-          lg={5}
-          md={12}
-          style={isMobile ? { marginBottom: "40px" } : { marginBottom: "0" }}
-        >
-          <TransactionsBox />
-        </Grid>
-        <Grid item xl={2} lg={2} md={12}>
-          <FileUploadBox />
-        </Grid>
-      </Grid>
+      )}
     </Grid>
   );
 }

@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     boxSizing: "border-box",
     padding: theme.spacing(3),
     width: "100%",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   text: {
     color: "gray",

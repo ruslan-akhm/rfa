@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     backgroundColor: "#fff",
     borderRadius: "20px",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   innerContainer: {
     borderRadius: "15px",

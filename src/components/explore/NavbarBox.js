@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer, useContext } from "react";
 import { ReactComponent as Logo } from "../../img/logo.svg";
 import { Link, useLocation } from "react-router-dom";
+import { UserStateContext, UserDispatchContext } from "../../context/Context";
+import { login } from "../../actions/auth";
 
 import {
   makeStyles,
@@ -9,6 +11,7 @@ import {
   Avatar,
   Typography,
   IconButton,
+  Badge,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
@@ -25,7 +28,15 @@ const useStyles = makeStyles(theme => ({
   activeButton: {
     color: theme.palette.primary.main + " !important",
   },
+  badge: {
+    position: "absolute",
+    top: "12px",
+    right: "16px",
+    border: `6px solid #fff`,
+    borderRadius: "50%",
+  },
   bell: {
+    position: "relative",
     marginLeft: "auto",
     marginRight: theme.spacing(2),
   },
@@ -44,6 +55,9 @@ const useStyles = makeStyles(theme => ({
   links: {
     textDecoration: "none",
   },
+  loginButton: {
+    marginLeft: "auto",
+  },
   name: {
     marginRight: theme.spacing(1),
     marginLeft: theme.spacing(1),
@@ -60,16 +74,14 @@ const useStyles = makeStyles(theme => ({
     minHeight: theme.spacing(8),
     padding: theme.spacing(3),
     width: "100%",
-    border: "2px solid red",
+    boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   navbarWrapper: {
     backgroundColor: theme.palette.background.main,
     maxWidth: "100%",
     boxSizing: "border-box",
     padding: theme.spacing(5),
-  },
-  brd: {
-    border: "1px solid red",
+    height: "20vh",
   },
 }));
 
@@ -79,8 +91,18 @@ function NavbarBox(props) {
   const [currentPage, setCurrentPage] = useState();
   const location = useLocation();
 
+  const dispatch = useContext(UserDispatchContext);
+  const { isAuthenticated, profile, notifications } = useContext(
+    UserStateContext
+  );
+
+  console.log(notifications);
+
   useEffect(() => {
     const path = location.pathname;
+    if (path === "/") {
+      return setCurrentPage("explore");
+    }
     const page = path.match(/[^/]+$/gi);
     setCurrentPage(page[0]);
   }, [location]);
@@ -95,10 +117,10 @@ function NavbarBox(props) {
         alignItems="center"
         className={classes.navbarContainer}
       >
-        <Grid item lg={1} className={classes.navbarButtons + " " + classes.brd}>
+        <Grid item lg={1} className={classes.navbarButtons}>
           <Logo />
         </Grid>
-        <Grid item lg={3} className={classes.dividerBefore + " " + classes.brd}>
+        <Grid item lg={3} className={classes.dividerBefore}>
           <Link to="/explore" className={classes.links}>
             <Button
               className={
@@ -133,26 +155,51 @@ function NavbarBox(props) {
             </Button>
           </Link>
         </Grid>
-        <Grid item className={classes.bell + " " + classes.brd}>
-          <IconButton color="solidGray">
-            <NotificationsNoneIcon />
-          </IconButton>
-        </Grid>
-        <Grid item className={classes.dividerBefore + " " + classes.brd}>
-          <Avatar
-            className={classes.avatar}
-            alt=""
-            src="../../img/person.jpg"
-          ></Avatar>
-        </Grid>
-        <Grid item className={classes.brd}>
-          <Typography className={classes.name}>Name Name</Typography>
-        </Grid>
-        <Grid item className={classes.brd}>
-          <IconButton color="solidGray">
-            <ExpandMoreIcon />
-          </IconButton>
-        </Grid>
+        {!isAuthenticated ? (
+          <Grid item className={classes.loginButton}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                login(dispatch);
+              }}
+            >
+              Login
+            </Button>
+          </Grid>
+        ) : (
+          <>
+            <Grid item className={classes.bell}>
+              <IconButton>
+                {notifications && notifications.new.length > 0 ? (
+                  <Badge
+                    color="primary"
+                    variant="dot"
+                    className={classes.badge}
+                  ></Badge>
+                ) : null}
+                <NotificationsNoneIcon />
+              </IconButton>
+            </Grid>
+            <Grid item className={classes.dividerBefore}>
+              <Avatar
+                className={classes.avatar}
+                alt=""
+                src={(profile && profile.avatar) || null}
+              ></Avatar>
+            </Grid>
+            <Grid item>
+              <Typography className={classes.name}>
+                {profile && profile.firstName + " " + profile.lastName}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <IconButton>
+                <ExpandMoreIcon />
+              </IconButton>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Grid>
   );
