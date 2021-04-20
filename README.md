@@ -11,7 +11,7 @@ This project was about building a Card Platform web app page based on mockups pr
 
 ```sh
 $ git clone https://github.com/ruslan-akhm/rfa.git
-$ cd rfalabs
+$ cd rfa
 $ npm install
 $ npm start
 ```
