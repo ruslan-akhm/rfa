@@ -1,35 +1,39 @@
 import person from "../img/person.jpg";
 
-export const taxReturns = [
-  {
-    taxYear: "2019",
-    dateSubmitted: "16 December 2020",
-    potentialEarning: "1000",
-    transactions: [
-      {
-        date: "01 May 2020",
-        amount: "240.50",
-        name: "BM",
-        periodFrom: "2019",
-        periodTo: "2019",
-      },
-      {
-        date: "07 May 2020",
-        amount: "600.00",
-        name: "JR",
-        periodFrom: "2019",
-        periodTo: "2019",
-      },
-      {
-        date: "16 May 2020",
-        amount: "10520.00",
-        name: "DB",
-        periodFrom: "2016",
-        periodTo: "2019",
-      },
-    ],
-  },
-];
+//Data separated into several objects for easier understanding
+// + also mocking separate API calls to retrieve only required data
+
+export const taxReturns = {
+  taxYear: "2019",
+  dateSubmitted: "16 December 2020",
+  potentialEarning: "1000",
+  transactions: [
+    {
+      id: "1",
+      date: "01 May 2020",
+      amount: "240.50",
+      name: "BM",
+      periodFrom: "2019",
+      periodTo: "2019",
+    },
+    {
+      id: "2",
+      date: "07 May 2020",
+      amount: "600.00",
+      name: "JR",
+      periodFrom: "2019",
+      periodTo: "2019",
+    },
+    {
+      id: "3",
+      date: "16 May 2020",
+      amount: "10520.00",
+      name: "DB",
+      periodFrom: "2016",
+      periodTo: "2019",
+    },
+  ],
+};
 
 export const milestones = {
   rating: {

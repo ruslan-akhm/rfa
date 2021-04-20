@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { UserStateContext, UserDispatchContext } from "../context/Context";
+import React, { useContext } from "react";
+import { UserStateContext } from "../context/Context";
 
 import HeaderBox from "../components/explore/HeaderBox";
 import ChartBox from "../components/explore/ChartBox";
@@ -11,14 +11,9 @@ import CpaBoxOne from "../components/explore/CpaBoxOne";
 import CpaBoxTwo from "../components/explore/CpaBoxTwo";
 import TransactionsBox from "../components/explore/TransactionsBox";
 import FileUploadBox from "../components/explore/FileUploadBox";
+import Loading from "../components/explore/Loading";
 
-import {
-  makeStyles,
-  Grid,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core";
+import { makeStyles, Grid, useMediaQuery, useTheme } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,17 +29,12 @@ const useStyles = makeStyles(theme => ({
   marginRight: {
     marginRight: "60px",
   },
-  message: {
-    border: "2px solid red",
+  mobileWidth: {
     width: "100%",
-    height: "70vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
   page: {
     backgroundColor: theme.palette.background.main,
-    minHeight: "80vh",
+    minHeight: "75vh",
     maxWidth: "100%",
     boxSizing: "border-box",
     paddingLeft: theme.spacing(5),
@@ -59,10 +49,7 @@ function Explore() {
 
   const classes = useStyles();
 
-  const dispatch = useContext(UserDispatchContext);
-  const { isAuthenticated, loading } = useContext(UserStateContext);
-
-  console.log(isAuthenticated);
+  const { isAuthenticated } = useContext(UserStateContext);
 
   return (
     <Grid
@@ -105,7 +92,6 @@ function Explore() {
               <TagsBox />
             </Grid>
           </Grid>
-
           <Grid
             container
             item
@@ -140,7 +126,11 @@ function Explore() {
               md={12}
               sm={12}
               xs={12}
-              className={isMobile ? classes.marginBottom : null}
+              className={
+                isMobile
+                  ? classes.marginBottom + " " + classes.mobileWidth
+                  : null
+              }
             >
               <CpaBoxTwo />
               <RatingBox />
@@ -150,19 +140,27 @@ function Explore() {
               xl={5}
               lg={5}
               md={12}
-              className={isMobile ? classes.marginBottom : null}
+              className={
+                isMobile
+                  ? classes.marginBottom + " " + classes.mobileWidth
+                  : null
+              }
             >
               <TransactionsBox />
             </Grid>
-            <Grid item xl={2} lg={2} md={12}>
+            <Grid
+              item
+              xl={2}
+              lg={2}
+              md={12}
+              className={isMobile ? classes.mobileWidth : null}
+            >
               <FileUploadBox />
             </Grid>
           </Grid>
         </>
       ) : (
-        <Grid item className={classes.message}>
-          <Typography>Please, login to view the content</Typography>
-        </Grid>
+        <Loading />
       )}
     </Grid>
   );

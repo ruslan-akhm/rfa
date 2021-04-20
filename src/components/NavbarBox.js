@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useReducer, useContext } from "react";
-import { ReactComponent as Logo } from "../../img/logo.svg";
+import React, { useEffect, useState, useContext } from "react";
+import { ReactComponent as Logo } from "../img/logo.svg";
 import { Link, useLocation } from "react-router-dom";
-import { UserStateContext, UserDispatchContext } from "../../context/Context";
-import { login } from "../../actions/auth";
+import { UserStateContext, UserDispatchContext } from "../context/Context";
+import { login } from "../actions/auth";
 
 import {
   makeStyles,
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "100%",
     boxSizing: "border-box",
     padding: theme.spacing(5),
-    height: "20vh",
+    height: "25vh",
   },
 }));
 
@@ -95,8 +95,6 @@ function NavbarBox(props) {
   const { isAuthenticated, profile, notifications } = useContext(
     UserStateContext
   );
-
-  console.log(notifications);
 
   useEffect(() => {
     const path = location.pathname;

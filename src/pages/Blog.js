@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Loading from "../components/explore/Loading";
 import { UserStateContext } from "../context/Context";
 
 import { makeStyles, Grid, Typography } from "@material-ui/core";
@@ -7,17 +8,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  message: {
-    border: "2px solid red",
-    width: "100%",
-    height: "70vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   page: {
     backgroundColor: theme.palette.background.main,
-    minHeight: "80vh",
+    minHeight: "75vh",
     maxWidth: "100%",
     boxSizing: "border-box",
     paddingLeft: theme.spacing(5),
@@ -35,16 +28,14 @@ function Blog(props) {
       container
       className={classes.page}
       direction="row"
-      alignItems="flex-start"
-      justify="space-between"
+      alignItems="center"
+      justify="center"
     >
-      <Grid item className={classes.message}>
-        <Typography>
-          {!isAuthenticated
-            ? "Please, login to view the content"
-            : "Blog component"}
-        </Typography>
-      </Grid>
+      {isAuthenticated ? (
+        <Typography variant="h4">Blog Page</Typography>
+      ) : (
+        <Loading />
+      )}
     </Grid>
   );
 }

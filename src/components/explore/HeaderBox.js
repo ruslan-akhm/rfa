@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Earning from "./Earning";
 import Person from "./Person";
+import { UserStateContext } from "../../context/Context";
 
 import {
   makeStyles,
@@ -62,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "20px",
     width: "100%",
     minHeight: theme.spacing(8),
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     boxShadow: "0px 0px 15px 1px rgba(0,0,0,0.05)",
   },
   icons: {
@@ -93,9 +94,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     fontSize: "14px",
-  },
-  brd: {
-    border: "1px solid black",
+    color: theme.palette.solidGray.main,
   },
 }));
 
@@ -103,6 +102,8 @@ function HeaderBox() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { taxReturns } = useContext(UserStateContext);
 
   return (
     <Grid
@@ -114,10 +115,10 @@ function HeaderBox() {
       direction="row"
     >
       <Grid item lg={4} md={4} className={classes.sliderBefore}>
-        <Typography>Individual tax return YEAR</Typography>
+        <Typography>Individual tax return {taxReturns.taxYear}</Typography>
         <Typography variant="subtitle2" className={classes.text}>
           <ScheduleIcon className={classes.icons + " " + classes.text} />
-          DATE
+          {taxReturns.dateSubmitted}
         </Typography>
       </Grid>
 

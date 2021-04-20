@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserStateContext } from "../../context/Context";
 
 import { makeStyles, Typography, Avatar, Grid, Badge } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -34,11 +35,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     fontSize: "14px",
+    color: theme.palette.solidGray.main,
   },
 }));
 
 function Person(props) {
   const classes = useStyles();
+  const { profile, isAuthenticated } = useContext(UserStateContext);
   return (
     <Grid
       container
@@ -48,19 +51,21 @@ function Person(props) {
       wrap="nowrap"
     >
       <Grid item className={classes.avatarContainer}>
-        {/*isOnline? badge : null  */}
-        <Badge variant="dot" className={classes.badge}></Badge>
+        {isAuthenticated ? (
+          <Badge variant="dot" className={classes.badge}></Badge>
+        ) : null}
+
         <Avatar
           className={classes.avatar}
-          alt=""
-          src="../../img/person.jpg"
+          alt="person"
+          src={profile.avatar}
         ></Avatar>
       </Grid>
       <Grid item>
-        <Typography>NameName NameNameNNN</Typography>
+        <Typography>{profile.firstName + " " + profile.lastName}</Typography>
         <Typography variant="subtitle2" className={classes.text}>
           <LocationOnIcon className={classes.icons + " " + classes.text} />
-          LOCATION
+          {profile.location}
         </Typography>
       </Grid>
     </Grid>

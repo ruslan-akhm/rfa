@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Earning from "./Earning";
+import { UserStateContext } from "../../context/Context";
 
 import {
   makeStyles,
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+
   backButton: {
     marginRight: theme.spacing(2),
   },
@@ -51,6 +53,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(3),
     },
   },
+  green: {
+    color: theme.palette.green.main,
+  },
   offerButton: {
     color: "#fff",
     backgroundColor: theme.palette.primary.main,
@@ -67,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 
 function ClientBox() {
   const classes = useStyles();
+  const { taxReturns } = useContext(UserStateContext);
   return (
     <Grid
       container
@@ -80,13 +86,15 @@ function ClientBox() {
       </IconButton>
 
       <Grid item className={classes.text}>
-        <Typography>Individual Tax Return YEAR</Typography>
-        <Typography variant="subtitle2">Potential Client</Typography>
+        <Typography>Individual Tax Return {taxReturns.taxYear}</Typography>
+        <Typography variant="subtitle2" className={classes.green}>
+          Potential Client
+        </Typography>
       </Grid>
       <Grid item className={classes.dividerBefore}>
         <Earning />
         <IconButton>
-          <AddCircleIcon />
+          <AddCircleIcon className={classes.green} />
         </IconButton>
       </Grid>
       <Grid item className={classes.dividerBefore}>

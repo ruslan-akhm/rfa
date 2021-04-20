@@ -1,8 +1,9 @@
-import { LOGIN, LOGIN_SUCCESS } from "../actions/types";
+import { LOGIN, LOGIN_SUCCESS, WELCOME } from "../actions/types";
 
 export const initialState = {
   isAuthenticated: false,
   loading: false,
+  welcome: false,
   profile: null,
   taxReturns: null,
   milestones: null,
@@ -16,12 +17,20 @@ export const UserReducer = (state = initialState, action) => {
     case LOGIN:
       return { ...state, loading: true };
 
+    case WELCOME:
+      return {
+        ...state,
+        loading: false,
+        welcome: true,
+        profile: payload.profile,
+      };
+
     case LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
+        welcome: false,
         isAuthenticated: true,
-        profile: payload.profile,
         taxReturns: payload.taxReturns,
         milestones: payload.milestones,
         notifications: payload.notifications,

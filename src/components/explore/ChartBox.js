@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   cardTitle: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(5),
+    paddingRight: theme.spacing(5),
     marginBottom: theme.spacing(3),
   },
   chartContainer: {
@@ -41,8 +41,8 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2),
   },
   sliders: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(5),
+    paddingRight: theme.spacing(5),
   },
   textBox: {
     display: "flex",
@@ -57,8 +57,6 @@ function ChartBox() {
 
   const [gradient, setGradient] = useState();
   const { milestones } = useContext(UserStateContext);
-
-  console.log(milestones);
 
   const data = {
     labels: milestones.dataPoints,
@@ -147,6 +145,7 @@ function ChartBox() {
     setGradient(grad);
   }, []);
 
+  //creating unique key for chart to prevent errors in the console
   const datasetKeyProvider = () => {
     return btoa(Math.random()).substring(0, 12);
   };

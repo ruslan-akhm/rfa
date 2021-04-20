@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Earning from "./Earning";
+import { UserStateContext } from "../../context/Context";
 
 import {
   makeStyles,
@@ -22,6 +23,10 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(18),
     borderRadius: "15px",
   },
+  highlight: {
+    color: `${theme.palette.secondary.main} !important`,
+    backgroundColor: `${theme.palette.primary.main} !important`,
+  },
   icons: {
     marginRight: theme.spacing(1),
   },
@@ -38,10 +43,12 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(4),
     },
     "& li": {
-      border: "2px solid red",
       borderRadius: "20px",
       width: "fit-content",
       margin: theme.spacing(0.5),
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
+      fontWeight: "500",
     },
   },
   menuButton: {
@@ -62,28 +69,30 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     fontSize: "14px",
+    color: theme.palette.solidGray.main,
   },
 }));
 
 function TagsBox(props) {
   const classes = useStyles();
+  const { profile, taxReturns } = useContext(UserStateContext);
 
   return (
     <Grid container className={classes.tagsContainer} direction="column">
       <Grid item>
-        <Typography>Individual tax return YEAR</Typography>
-        <Typography className={classes.text}>
+        <Typography>Individual tax return {taxReturns.taxYear}</Typography>
+        <Typography className={classes.text} variant="subtitle2">
           <ScheduleIcon className={classes.icons + " " + classes.text} />
-          DATE
+          {taxReturns.dateSubmitted}
         </Typography>
       </Grid>
       <Grid item>
         <List className={classes.list}>
-          <ListItem>TYPE</ListItem>
-          <ListItem>LOCATION</ListItem>
-          <ListItem>EMPLOYMENT</ListItem>
-          <ListItem>CITIZENSHIP</ListItem>
-          <ListItem>MARITALSTATUS</ListItem>
+          <ListItem className={classes.highlight}>{profile.type}</ListItem>
+          <ListItem>{profile.location}</ListItem>
+          <ListItem>{profile.employment}</ListItem>
+          <ListItem>{profile.citizenship}</ListItem>
+          <ListItem>{profile.maritalStatus}</ListItem>
         </List>
       </Grid>
       <Grid container item direction="row" justify="space-between">

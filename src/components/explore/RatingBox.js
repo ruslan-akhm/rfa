@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Person from "./Person";
+import { UserStateContext } from "../../context/Context";
 
 import {
   makeStyles,
@@ -61,13 +62,13 @@ const useStyles = makeStyles(theme => ({
 
 function RatingBox(props) {
   const classes = useStyles();
+  const { profile } = useContext(UserStateContext);
   return (
     <Grid
       container
       justify="space-between"
       alignItems="center"
       direction="column"
-      //md={12}
       className={classes.ratingContainer}
     >
       <Person />
@@ -82,16 +83,18 @@ function RatingBox(props) {
           <Typography>Rating</Typography>
           <Typography className={classes.text}>
             <StarIcon className={classes.star} />
-            XX
+            {profile.rating}
           </Typography>
         </Grid>
         <Grid item>
           <Typography>Certificates</Typography>
-          <Typography className={classes.text}>XX</Typography>
+          <Typography className={classes.text}>
+            {profile.certificates}
+          </Typography>
         </Grid>
         <Grid item>
           <Typography>Projects done</Typography>
-          <Typography className={classes.text}>XX</Typography>
+          <Typography className={classes.text}>{profile.projects}</Typography>
         </Grid>
       </Grid>
       <Button

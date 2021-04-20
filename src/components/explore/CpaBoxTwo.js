@@ -13,9 +13,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "50%",
   },
   closeButtonWrapper: {
-    border: "none",
-    width: "7px !important",
-    height: "7px !important",
+    width: "0px !important",
+    height: "0px !important",
     backgroundColor: "#fff !important",
   },
   cpaContainer: {

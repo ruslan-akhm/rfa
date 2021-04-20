@@ -5,7 +5,7 @@ import { theme } from "./themes/theme";
 import Explore from "./pages/Explore";
 import Clients from "./pages/Clients";
 import Blog from "./pages/Blog";
-import NavbarBox from "./components/explore/NavbarBox";
+import NavbarBox from "./components/NavbarBox";
 
 import { UserStateContext, UserDispatchContext } from "./context/Context";
 import { initialState, UserReducer } from "./reducers/UserReducer";

@@ -14,10 +14,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  closeButton: {
-    width: "20px",
-    height: "20px",
-  },
   cpaContainer: {
     minHeight: theme.spacing(10),
     padding: theme.spacing(2),
@@ -60,7 +56,7 @@ function CpaBoxOne() {
         <Typography>CPA</Typography>
       </Grid>
       <Typography>Certified Public Accountant</Typography>
-      <IconButton className={classes.closeButton}>
+      <IconButton>
         <CancelIcon />
       </IconButton>
     </Grid>

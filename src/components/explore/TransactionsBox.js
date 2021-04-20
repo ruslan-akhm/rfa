@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserStateContext } from "../../context/Context";
 
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
@@ -12,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   amountCents: {
     color: theme.palette.solidGray.main,
-    fontSize: "18px",
+    fontSize: "16px",
   },
   arrowIcon: {
     fill: theme.palette.green.main,
@@ -59,6 +60,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     color: theme.palette.green.main,
   },
+  periodWrapper: {
+    marginRight: "auto",
+  },
   textSub: {
     color: theme.palette.solidGray.main,
   },
@@ -74,6 +78,47 @@ const useStyles = makeStyles(theme => ({
 
 function TransactionsBox(props) {
   const classes = useStyles();
+  const { taxReturns } = useContext(UserStateContext);
+
+  const list = taxReturns.transactions.map(item => {
+    return (
+      <Grid
+        item
+        container
+        justify="space-between"
+        alignItems="center"
+        direction="row"
+        className={classes.dividerBefore}
+        key={item.id}
+      >
+        <Grid item>
+          <Typography className={classes.initialsCircle}>
+            {item.name}
+          </Typography>
+        </Grid>
+        <Grid item className={classes.periodWrapper}>
+          <Typography>
+            Individual tax return{" "}
+            {item.periodFrom == item.periodTo
+              ? item.periodFrom
+              : item.periodFrom + " - " + item.periodTo}
+          </Typography>
+          <Typography variant="subtitle2" className={classes.textSub}>
+            {item.date}
+          </Typography>
+        </Grid>
+        <Grid item className={classes.amount}>
+          <Typography>
+            ${item.amount.match(/[^.]*/)}
+            <span className={classes.amountCents}>
+              .{item.amount.match(/[^.]+$/)}
+            </span>
+          </Typography>
+        </Grid>
+      </Grid>
+    );
+  });
+
   return (
     <Grid
       container
@@ -99,8 +144,9 @@ function TransactionsBox(props) {
           </Typography>
         </Grid>
       </Grid>
+      {list}
       {/* HERE WE WILL MAP  */}
-      <Grid
+      {/* <Grid
         item
         container
         justify="space-between"
@@ -122,7 +168,7 @@ function TransactionsBox(props) {
             $$$<span className={classes.amountCents}>.00</span>
           </Typography>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
